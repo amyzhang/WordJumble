@@ -23,13 +23,11 @@ class dictTrie:
     def find_helper(self, node, word, jumble):
         if len(word)>1:
             self.find_helper(node, word[1:], jumble)
-        try:               
-            curr_node = node[1][word[0]]
+        if len(word) and word[0] in node[1]:               
+            curr_node = node[1][word[0]] 
             jumble.update(curr_node[0])
-        except KeyError:
-            return
-        if len(word)>1:
-            self.find_helper(curr_node, word[1:], jumble)
+            if len(word)>1:
+                self.find_helper(curr_node, word[1:], jumble)
         
 if __name__ == "__main__":
     d = dictTrie('dicts/2of4brif.txt')
